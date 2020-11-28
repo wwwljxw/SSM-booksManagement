@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.forever.dao.TypeMapper">
+    <select id="allTypes" resultType="Type">
+        select * from class_info
+    </select>
+
+    <insert id="addType" parameterType="String">
+        insert into class_info(cname) values (#{cname})
+    </insert>
+
+    <delete id="deleteType" parameterType="int">
+        delete from class_info where cid = #{cid}
+    </delete>
+</mapper>

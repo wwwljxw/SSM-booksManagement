@@ -9,6 +9,6 @@ public class SystemController {
 
     @RequestMapping("/login")
     public String login(){
-        return "/system/index";
+        return "/book/bookType";
     }
 }
