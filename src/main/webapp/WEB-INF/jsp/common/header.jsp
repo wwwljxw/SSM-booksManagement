@@ -9,13 +9,18 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/layui.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modules/code.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modules/laydate/default/laydate.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/modules/layer/default/layer.css">
+    <link rel="stylesheet" href="<%=basePath%>css/layui.css">
+    <link rel="stylesheet" href="<%=basePath%>css/modules/code.css">
+    <link rel="stylesheet" href="<%=basePath%>css/modules/laydate/default/laydate.css">
+    <link rel="stylesheet" href="<%=basePath%>css/modules/layer/default/layer.css">
     <title></title>
     <style type="text/css">
         .layui-table-cell{
@@ -34,17 +39,17 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">图书管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="${pageContext.request.contextPath}/library/index.do">图书列表</a></dd>
-                    <dd><a href="${pageContext.request.contextPath}/type/bookType">分类管理</a></dd>
+                    <dd><a href="<%=basePath%>library/index.do">图书列表</a></dd>
+                    <dd><a href="<%=basePath%>type/bookType">分类管理</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/reader/readerIndex.htm">读者列表</a></li>
-            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/listDisBackAdmin.htm">借阅管理</a></li>
+            <li class="layui-nav-item"><a href="<%=basePath%>reader/readerIndex.htm">读者列表</a></li>
+            <li class="layui-nav-item"><a href="<%=basePath%>listDisBackAdmin.htm">借阅管理</a></li>
             <li class="layui-nav-item"><a onclick="alterPwd('0');">修改密码</a></li>
         </c:if>
         <c:if test="${reader!=null}">
-            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/library/frontIndex.htm">图书列表</a></li>
-            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/listDisBack.htm">借阅记录</a></li>
+            <li class="layui-nav-item"><a href="<%=basePath%>library/frontIndex.htm">图书列表</a></li>
+            <li class="layui-nav-item"><a href="<%=basePath%>listDisBack.htm">借阅记录</a></li>
             <li class="layui-nav-item"><a onclick="alterPwd('1');">修改密码</a></li>
         </c:if>
     </ul>
@@ -56,14 +61,14 @@
                 ${admin.name}
             </a>
         </li>
-        <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/loginout.htm">退出</a></li>
+        <li class="layui-nav-item"><a href="<%=basePath%>loginout.htm">退出</a></li>
     </ul>
 </div>
 
 
 <div style="padding: 15px;">
 </body>
-<script src="${pageContext.request.contextPath}}/js/layui.js"></script>
+<script src="<%=basePath%>js/layui.js"></script>
 <script>
 
     function alterPwd(state){//添加
@@ -72,7 +77,7 @@
             title: '修改密码',
             skin: 'layui-layer-demo', //加上边框
             area: ['500px', '300px'], //宽高
-            content: '${pageContext.request.contextPath}/toAlterpwdPage.do?state='+state
+            content: '<%=basePath%>toAlterpwdPage.do?state='+state
         });
     }
 

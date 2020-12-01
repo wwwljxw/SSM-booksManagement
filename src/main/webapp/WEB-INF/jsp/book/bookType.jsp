@@ -17,7 +17,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <script src="${pageContext.request.contextPath}/js/layui.js"></script>
+    <script src="<%=basePath%>js/layui.js"></script>
     <title>图书类别</title>
 </head>
 <body class="layui-layout-body">
@@ -38,7 +38,7 @@
         <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
     </script>
-    <script src="<%=basePath%>/js/layui.js"></script>
+    <script src="<%=basePath%>js/layui.js"></script>
     <script type="text/javascript">
         layui.use(['laypage', 'layer', 'table', 'element','jquery'], function(){
             laypage = layui.laypage //分页
@@ -51,8 +51,9 @@
             table.render({
                 elem: '#demo'
                 ,height: 550
-                ,url: '<%=basePath%>/type/bookTypeList.do' //数据接口
+                ,url: '<%=basePath%>type/allBookType' //数据接口
                 ,title: '图书表'
+                ,dataType:'json'
                 ,cols: [[ //表头
                     {field: 'cname', title: '类别名称', width:300, align:'center'}
                     ,{fixed: 'right',title:'操作', width: 300, align:'center', toolbar: '#barDemo'}
@@ -80,12 +81,12 @@
                 layer.prompt({title: '修改类别',value:data1.cname, formType: 2}, function(text, index){
                     layer.close(index);
                     $.ajax({
-                        url:'<%=basePath%>type/allBookType',
+                        url:'<%=basePath%>type/updateType',
                         data:{'cid':data1.cid,'cname':text},
                         dataType:'json',
                         type:'post',
                         success:function (data) {
-                            if (data.success){
+                            if (data){
                                 layer.alert(data.message,function(){
                                     window.parent.location.reload();//刷新父页面
                                     parent.layer.close(index);//关闭弹出层
@@ -102,7 +103,7 @@
             function del(cid,obj,index){
 
                 $.ajax({
-                    url:'<%=basePath%>/type/delBookType.do?cid='+cid,
+                    url:'<%=basePath%>type/delBookType.do?cid='+cid,
                     dataType:'json',
                     type:'post',
                     success:function (data) {
@@ -126,16 +127,16 @@
                     layer.close(index);
                     $.ajax({
                         url:"<%=basePath%>type/addBookType",
-                        data:{'cname':text},
+                        data:{cname:text},
                         dataType:'json',
                         type:'post',
                         success:function (data) {
                             if (data.success){
-//                                layer.alert(data.message,function(){
-//                                    window.parent.location.reload();//刷新父页面
-//                                    parent.layer.close(index);//关闭弹出层
-//                                });
-                                window.location.reload();
+                               // layer.alert(data.message,function(){
+                               //     window.parent.location.reload();//刷新父页面
+                               //     parent.layer.close(index);//关闭弹出层
+                               // });
+                               //  window.location.reload(data.message);
                             }else{
                                 layer.msg(data.message);
                             }
