@@ -1,6 +1,7 @@
 package com.forever.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.forever.domain.Type;
 import com.forever.exception.TypeException;
 import com.forever.service.TypeService;
@@ -50,8 +51,12 @@ public class TypeController {
     @ResponseBody
     public String listCategory() {
         List<Type> booksList= typeService.allTypes();
-        String booksJson= JSON.toJSON(booksList).toString();
-        return booksJson;
+        JSONObject obj = new JSONObject();
+        obj.put("code", 0);
+        obj.put("msg", "");
+        obj.put("count", booksList.size());
+        obj.put("data", booksList);
+        return obj.toString();
     }
 
 }

@@ -50,12 +50,12 @@
             //执行一个 table 实例
             table.render({
                 elem: '#demo'
-                ,height: 550
+                ,height: 600
                 ,url: '<%=basePath%>type/allBookType' //数据接口
                 ,title: '图书表'
                 ,dataType:'json'
                 ,cols: [[ //表头
-                    {field: 'cname', title: '类别名称', width:300, align:'center'}
+                    {field: 'cname', title: '类别名称',  align:'center'}
                     ,{fixed: 'right',title:'操作', width: 300, align:'center', toolbar: '#barDemo'}
                 ]]
             });
