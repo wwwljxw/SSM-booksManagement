@@ -1,13 +1,14 @@
 package com.forever.domain;
 
-import lombok.AllArgsConstructor;
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+@TableName("class_info")
 public class Type {
-    private  int cid;
+    @TableId(type = IdType.AUTO)
+    private int cid;
     private String cname;
 }

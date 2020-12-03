@@ -50,9 +50,10 @@
             //执行一个 table 实例
             table.render({
                 elem: '#demo'
-                ,height: 600
+                ,height: 560
                 ,url: '<%=basePath%>type/allBookType' //数据接口
                 ,title: '图书表'
+                ,page: true
                 ,dataType:'json'
                 ,cols: [[ //表头
                     {field: 'cname', title: '类别名称',  align:'center'}
@@ -103,15 +104,15 @@
             function del(cid,obj,index){
 
                 $.ajax({
-                    url:'<%=basePath%>type/delBookType.do?cid='+cid,
+                    url:'<%=basePath%>type/delBookType?cid='+cid,
                     dataType:'json',
-                    type:'post',
+                    type:'text',
                     success:function (data) {
-                        if (data.success){
+                        if (data == '1'){
                             obj.del(); //删除对应行（tr）的DOM结构
                             layer.close(index);
                         }else{
-                            layer.msg(data.message);
+                            layer.msg("删除失败");
                         }
                     }
                 })
@@ -126,17 +127,17 @@
                 layer.prompt({title: '添加类别', formType: 2}, function(text, index){
                     layer.close(index);
                     $.ajax({
-                        url:"<%=basePath%>type/addBookType",
-                        data:{cname:text},
+                        url:'${APP_PATH}/type/addBookType.do',
+                        data:{'cname':text},
                         dataType:'json',
                         type:'post',
                         success:function (data) {
                             if (data.success){
-                               // layer.alert(data.message,function(){
-                               //     window.parent.location.reload();//刷新父页面
-                               //     parent.layer.close(index);//关闭弹出层
-                               // });
-                               //  window.location.reload(data.message);
+//                                layer.alert(data.message,function(){
+//                                    window.parent.location.reload();//刷新父页面
+//                                    parent.layer.close(index);//关闭弹出层
+//                                });
+                                window.location.reload();
                             }else{
                                 layer.msg(data.message);
                             }

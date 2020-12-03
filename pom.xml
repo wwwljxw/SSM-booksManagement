@@ -90,18 +90,11 @@
             <version>2.0</version>
         </dependency>
 
-        <!--    mybatis-->
+<!--        mybatis plus-->
         <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-            <version>3.5.5</version>
-        </dependency>
-
-        <!--    mybatis-Spring-->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>2.0.5</version>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus</artifactId>
+            <version>3.4.1</version>
         </dependency>
 
         <!--      Spring-->
