@@ -9,7 +9,7 @@
             color: black;
             font-size: 18px;
         }
-        h3 {
+        h2 {
             width: 180px;
             height: 38px;
             margin: 100px auto;
@@ -22,9 +22,10 @@
 </head>
 <body>
 
-<h3>
-    <a href="${pageContext.request.contextPath}/book/selectAllBook">点击进入列表页</a>
-</h3>
-<h3><a href="${pageContext.request.contextPath}/system/login">点击登录</a></h3>
+<h2>
+    <a href="${pageContext.request.contextPath}/system/addBook">添加书籍</a>
+</h2>
+<h2><a href="${pageContext.request.contextPath}/system/addReader">添加读者</a></h2>
+<h2><a href="${pageContext.request.contextPath}/system/login">书籍分类管理</a></h2>
 </body>
 </html>

@@ -1,10 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: WDD
-  Date: 2019/6/15
-  Time: 17:35
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -17,6 +11,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<%--    <link rel="stylesheet" href="<%=basePath%>css/layui.css">--%>
     <script src="<%=basePath%>js/layui.js"></script>
     <title>图书类别</title>
 </head>
@@ -38,7 +33,7 @@
         <a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
         <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
     </script>
-    <script src="<%=basePath%>js/layui.js"></script>
+<%--    <script src="<%=basePath%>js/layui.js"></script>--%>
     <script type="text/javascript">
         layui.use(['laypage', 'layer', 'table', 'element','jquery'], function(){
             laypage = layui.laypage //分页
@@ -54,7 +49,6 @@
                 ,url: '<%=basePath%>type/allBookType' //数据接口
                 ,title: '图书表'
                 ,page: true
-                ,dataType:'json'
                 ,cols: [[ //表头
                     {field: 'cname', title: '类别名称',  align:'center'}
                     ,{fixed: 'right',title:'操作', width: 300, align:'center', toolbar: '#barDemo'}
@@ -87,7 +81,7 @@
                         dataType:'json',
                         type:'post',
                         success:function (data) {
-                            if (data){
+                            if (data.success){
                                 layer.alert(data.message,function(){
                                     window.parent.location.reload();//刷新父页面
                                     parent.layer.close(index);//关闭弹出层
@@ -106,13 +100,14 @@
                 $.ajax({
                     url:'<%=basePath%>type/delBookType?cid='+cid,
                     dataType:'json',
-                    type:'text',
+                    type:'post',
                     success:function (data) {
-                        if (data == '1'){
+                        if (data.success){
                             obj.del(); //删除对应行（tr）的DOM结构
                             layer.close(index);
+                            layer.msg(data.message);
                         }else{
-                            layer.msg("删除失败");
+                            layer.msg(data.message);
                         }
                     }
                 })
@@ -127,16 +122,12 @@
                 layer.prompt({title: '添加类别', formType: 2}, function(text, index){
                     layer.close(index);
                     $.ajax({
-                        url:'${APP_PATH}/type/addBookType.do',
+                        url:'<%=basePath%>type/addBookType',
                         data:{'cname':text},
                         dataType:'json',
                         type:'post',
                         success:function (data) {
                             if (data.success){
-//                                layer.alert(data.message,function(){
-//                                    window.parent.location.reload();//刷新父页面
-//                                    parent.layer.close(index);//关闭弹出层
-//                                });
                                 window.location.reload();
                             }else{
                                 layer.msg(data.message);

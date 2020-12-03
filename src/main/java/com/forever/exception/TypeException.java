@@ -1,6 +1,6 @@
 package com.forever.exception;
 
-public class TypeException extends Exception{
+public class TypeException extends LibraryException{
     public TypeException() {
     }
 
