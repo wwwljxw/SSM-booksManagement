@@ -34,7 +34,7 @@
                 <a href="javascript:;">图书管理</a>
                 <dl class="layui-nav-child">
                     <dd><a href="<%=basePath%>library/index.do">图书列表</a></dd>
-                    <dd><a href="<%=basePath%>type/bookType">分类管理</a></dd>
+                    <dd><a href="<%=basePath%>book/bookType">分类管理</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="<%=basePath%>reader/readerIndex.htm">读者列表</a></li>

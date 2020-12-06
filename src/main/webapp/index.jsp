@@ -9,7 +9,7 @@
             color: black;
             font-size: 18px;
         }
-        h2 {
+        h4 {
             width: 180px;
             height: 38px;
             margin: 100px auto;
@@ -22,10 +22,11 @@
 </head>
 <body>
 
-<h2>
+<h4>
     <a href="${pageContext.request.contextPath}/system/addBook">添加书籍</a>
-</h2>
-<h2><a href="${pageContext.request.contextPath}/system/addReader">添加读者</a></h2>
-<h2><a href="${pageContext.request.contextPath}/system/login">书籍分类管理</a></h2>
+</h4>
+<h4><a href="${pageContext.request.contextPath}/system/addReader">添加读者</a></h4>
+<h4><a href="${pageContext.request.contextPath}/system/login">书籍分类管理</a></h4>
+<h4><a href="${pageContext.request.contextPath}/system/index">书籍管理系统-首页</a></h4>
 </body>
 </html>

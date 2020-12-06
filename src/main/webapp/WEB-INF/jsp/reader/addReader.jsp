@@ -86,7 +86,7 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <c:if test="${reader==null}"><!-- 查看是没有添加按钮的 -->
+            <c:if test="${code==null}"><!-- 查看是没有添加按钮的 -->
             <button class="layui-btn" lay-submit="" lay-filter="addreader">立即添加</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </c:if>

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -20,13 +21,13 @@ public class TypeServiceImpl implements TypeService {
     private TypeMapper typeMapper;
 
     /**
-     * 查询所有书籍类别
+     * 分页查询所有书籍类别
      * @param page 第几页
      * @param limit 每页要几条数据
      * @return  执行结果
      */
     @Override
-    public Map allTypes(int page, int limit) {
+    public Map pageAllTypes(int page, int limit) {
 //        分页
         Page<Type> pageSize = new Page(page, limit);
         Page<Type> typePage = typeMapper.selectPage(pageSize, null);
@@ -112,5 +113,11 @@ public class TypeServiceImpl implements TypeService {
         }
 
         return ajaxResult;
+    }
+
+    @Override
+    public List<Type> allType() {
+        List<Type> types = typeMapper.selectList(null);
+        return types;
     }
 }

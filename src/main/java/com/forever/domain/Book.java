@@ -11,8 +11,8 @@ import lombok.Data;
 @Data
 public class Book {
 
-    @TableId(type = IdType.AUTO)
-    private Integer book_id;
+    @TableId(value = "book_id",type = IdType.AUTO)
+    private int id;
     private String name;
     private String author;
     private String publish;

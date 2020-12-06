@@ -33,7 +33,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">书名：</label>
             <div class="layui-input-inline">
-                <input type="hidden" name="book_id" value="${bookinfo.book_id}">
+                <input type="hidden" name="id" value="${bookinfo.id}">
                 <input type="text" name="name" lay-verify="required" value="${bookinfo.name}" autocomplete="off" class="layui-input">
             </div>
         </div>

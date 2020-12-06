@@ -36,13 +36,13 @@ public class TypeController {
     }
 
     /**
-     * 查询所有的书籍分类
+     * 分页查询所有的书籍分类
      * @return  以json格式返回所有的书籍分类
      */
     @RequestMapping("/allBookType")
     @ResponseBody
-    public Map allTypeList(int page, int limit){
-        return typeService.allTypes(page,limit);
+    public Map pageAllTypeList(int page, int limit){
+        return typeService.pageAllTypes(page,limit);
     }
 
     /**

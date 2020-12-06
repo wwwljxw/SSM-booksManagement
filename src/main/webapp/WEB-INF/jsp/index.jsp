@@ -3,6 +3,11 @@
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -28,7 +33,7 @@
             <div class="layui-input-block">
                 <select name="cid" id="cid">
                     <option value="">请选择书本类别</option>
-                    <c:forEach items="${category}" var="ctg">
+                    <c:forEach items="${type}" var="ctg">
                         <option value="${ctg.cid}">${ctg.cname}</option>
                     </c:forEach>
                 </select>
@@ -54,7 +59,7 @@
     <a class="layui-btn layui-btn-danger layui-btn-sm" lay-event="del">删除</a>
 </script>
 
-<script src="${APP_path}/js/layui.js"></script>
+<script src="<%=basePath%>js/layui.js"></script>
 <script>
 
 
@@ -70,7 +75,7 @@
             title: '添加图书',
             skin: 'layui-layer-demo', //加上边框
             area: ['800px', '600px'], //宽高
-            content: '${APP_PATH}/library/addBook.do'
+            content: '<%=basePath%>book/addBook'
         });
     }
 
@@ -93,14 +98,13 @@
         table.render({
             elem: '#demo'
             ,height: 550
-            ,url: '${APP_path}/library/listBook.do' //数据接口
+            ,url: '<%=basePath%>book/pageAllBook' //数据接口
             ,title: '图书表'
             ,page: true
-            ,limit: 5
-            ,limits: [5,10,15,20]
+            ,limit: 10
             ,cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'book_id', title: '书本编号', width:150, sort: true}
+                ,{field: 'id', title: '书本编号', width:150, sort: true,}
                 ,{field: 'name', title: '书名', width:200}
                 ,{field: 'author', title: '作者', width: 200, sort: true}
                 ,{field: 'publish', title: '出版社', width:200, sort: true}
@@ -108,7 +112,7 @@
                 ,{field: 'pubdate', title: '出版日期', width: 120, sort: true}
                 ,{field: 'stock', title: '库存', width: 100}
                 ,{field: 'price', title: '价格', width: 100, sort: true}
-                // ,{field: 'introduction', title: '简介', width:150}
+                ,{field: 'introduction', title: '简介', width:150}
                 ,{fixed: 'right', width: 200, align:'center', toolbar: '#barDemo'}
             ]]
             //用于搜索结果重载
@@ -149,17 +153,17 @@
                 find(data);
             } else if(layEvent === 'del'){
                 layer.confirm('真的删除行么', function(index){
-                    del(data.book_id,obj,index);
+                    del(data.id,obj,index);
                 });
             } else if(layEvent === 'edit'){
                 edit(data);
             }
         });
         //后边两个参数仅仅是因为要执行动态删除dom
-        function del(book_id,obj,index){
+        function del(id,obj,index){
 
             $.ajax({
-                url:'${APP_path}/library/delBook.do?book_id='+book_id,
+                url:'<%=basePath%>book/delBook?id='+id,
                 dataType:'json',
                 type:'post',
                 success:function (data) {
@@ -181,9 +185,7 @@
                 title: '修改图书信息',
                 skin: 'layui-layer-demo', //加上边框
                 area: ['800px', '600px'], //宽高
-                method: 'post',
-                content: '${APP_PATH}/library/editBook.do?'
-                +'book_id='+data.book_id
+                content: '<%=basePath%>book/getUpdateBook?id='+data.id
             });
         }
 
@@ -194,8 +196,8 @@
                 skin: 'layui-layer-demo', //加上边框
                 area: ['800px', '600px'], //宽高
                 method: 'post',
-                content: '${APP_PATH}/library/findBook.do?'
-                +'book_id='+data.book_id
+                content: '<%=basePath%>book/findBook?'
+                +'id='+data.id
             });
         }
 
