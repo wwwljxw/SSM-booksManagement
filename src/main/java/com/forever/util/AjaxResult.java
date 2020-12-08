@@ -10,4 +10,5 @@ import lombok.Data;
 public class AjaxResult {
     private boolean success;
     private String message;
+    private Integer status;
 }

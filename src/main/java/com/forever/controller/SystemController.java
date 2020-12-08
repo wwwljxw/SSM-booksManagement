@@ -18,6 +18,14 @@ public class SystemController {
     private TypeMapper mapper;
 
     /**
+     *  跳转到用户注册
+     */
+    @RequestMapping("/register")
+    public String register(){
+        return "/register";
+    }
+
+    /**
      *  跳转到添加书籍页面
      */
     @RequestMapping("/addBook")
@@ -25,6 +33,14 @@ public class SystemController {
         List<Type> types = mapper.selectList(null);
         model.addAttribute("type", types);
         return "/book/addBook";
+    }
+
+    /**
+     *  跳转到书籍分类
+     */
+    @RequestMapping("/bookType")
+    public String bookType(){
+        return "/book/bookType";
     }
 
     /**
@@ -36,6 +52,14 @@ public class SystemController {
     }
 
     /**
+     *  跳转到读者管理
+     */
+    @RequestMapping("/readerIndex")
+    public String readerIndex(){
+        return "/readerIndex";
+    }
+
+    /**
      *  跳转到书籍管理系统首页
      */
     @RequestMapping("/index")
@@ -43,5 +67,13 @@ public class SystemController {
         List<Type> types = mapper.selectList(null);
         model.addAttribute("type", types);
         return "/index";
+    }
+
+    /**
+     *  跳转到用户注册
+     */
+    @RequestMapping("/login")
+    public String login(){
+        return "/login";
     }
 }

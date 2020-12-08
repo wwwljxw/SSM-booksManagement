@@ -100,7 +100,7 @@
             ,limits: [5,10,15,20]
             ,cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'reader_id', title: '借阅号', width:200, sort: true}
+                ,{field: 'readerId', title: '借阅号', width:200, sort: true}
                 ,{field: 'book_id', title: '图书ID', width: 200}
                 ,{field: 'bookName', title: '书名', width: 300}
                 ,{field: 'lend_date', title: '借阅时间', width:200, sort: true}

@@ -1,14 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: WDD
-  Date: 2019/6/15
-  Time: 19:33
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -26,7 +24,7 @@
     <!-- 搜索条件表单 -->
     <div class="demoTable layui-form">
         <div class="layui-inline">
-            <input class="layui-input" name="reader_id" id="reader_id" autocomplete="off"  placeholder="请输入读者ID">
+            <input class="layui-input" name="readerId" id="readerId" autocomplete="off"  placeholder="请输入读者ID">
         </div>
         <div class="layui-inline">
             <input class="layui-input" name="rname" id="rname" autocomplete="off" placeholder="请输入姓名">
@@ -56,10 +54,10 @@
         var element = layui.element;
 
     });
-    var url = "${APP_PATH}/"
+    var url = "<%=basePath%>"
 </script>
 
-<script src="${APP_PATH}/js/layui.js"></script>
+<script src="<%=basePath%>js/layui.js"></script>
 <%--<script src="${APP_PATH}/js/reader/CRUDreader.js"></script>--%>
 <script>
 
@@ -75,7 +73,7 @@
             title: '添加读者',
             skin: 'layui-layer-demo', //加上边框
             area: ['800px', '500px'], //宽高
-            content: '${APP_PATH}/reader/addReader.htm'
+            content: '<%=basePath%>reader/getAddReader'
         });
     }
 
@@ -95,20 +93,20 @@
         table.render({
             elem: '#demo'
             ,height: 550
-            ,url: '${APP_PATH}/reader/listReader.do' //数据接口
+            ,url: '<%=basePath%>reader/pageAllBook' //数据接口
             ,title: '图书表'
             ,page: true
             ,limit: 6
             ,limits: [5,10,15,20]
             ,cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'reader_id', title: '读者ID', width:150, sort: true}
+                ,{field: 'readerId', title: '读者ID', width:150, sort: true}
                 ,{field: 'name', title: '姓名', width:150}
                 ,{field: 'sex', title: '性别', width: 150}
                 ,{field: 'birthday', title: '生日', width:200, sort: true}
                 ,{field: 'address', title: '地址', width: 300}
-                ,{field: 'telephone', title: '电话', width: 120}
-                ,{field: 'card_state', title: '读者可借图书', width: 150}
+                ,{field: 'telephone', title: '电话', width: 150}
+                ,{field: 'cardState', title: '读者可借图书', width: 150}
                 ,{fixed: 'right', title: '操作',width: 200, align:'center', toolbar: '#barDemo'}
             ]]
             //用于搜索结果重载
@@ -116,7 +114,7 @@
         });
         var $ = layui.$, active = {
             reload: function(){
-                var reader_id = $('#reader_id');
+                var readerId = $('#readerId');
                 var rname = $('#rname');
                 //执行重载
                 table.reload('testReload', {
@@ -127,7 +125,7 @@
                     }
                     ,where: {
                         //bname表示传到后台的参数,bname.val()表示具体数据
-                        reader_id: reader_id.val(),
+                        readerId: readerId.val(),
                         rname: rname.val(),
                     }
                 });
@@ -147,7 +145,7 @@
                 find(data);
             } else if(layEvent === 'del'){
                 layer.confirm('真的删除行么', function(index){
-                    del(data.reader_id,obj,index);
+                    del(data.readerId,obj,index);
                 });
             } else if(layEvent === 'edit'){
                 edit(data);
@@ -157,7 +155,7 @@
         function del(id,obj,index){
 
             $.ajax({
-                url:'${APP_PATH}/reader/delReader.do?id='+id,
+                url:'<%=basePath%>reader/delReader?id='+id,
                 dataType:'json',
                 type:'post',
                 success:function (data) {
@@ -180,7 +178,7 @@
                 skin: 'layui-layer-demo', //加上边框
                 area: ['800px', '500px'], //宽高
                 method: 'post',
-                content: '${APP_PATH}/reader/editReader.do?'
+                content: '<%=basePath%>reader/getUpdateReader?'
                 +'id='+data.id
             });
         }
@@ -192,7 +190,7 @@
                 skin: 'layui-layer-demo', //加上边框
                 area: ['800px', '500px'], //宽高
                 method: 'post',
-                content: '${APP_PATH}/reader/findReader.do?'
+                content: '<%=basePath%>reader/findReader?'
                 +'id='+data.id
             });
         }

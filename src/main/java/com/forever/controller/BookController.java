@@ -96,6 +96,7 @@ public class BookController {
      * @return  执行结果
      */
     @RequestMapping(value = "/updateBook" ,method=RequestMethod.POST)
+    @ResponseBody
     public AjaxResult updateBook(Book book){
         AjaxResult ajaxResult= null;
         try {

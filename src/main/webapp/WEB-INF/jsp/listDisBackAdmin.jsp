@@ -96,7 +96,7 @@
             ,limits: [5,10,15,20]
             ,cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'reader_id', title: '借阅号', width:150, sort: true}
+                ,{field: 'readerId', title: '借阅号', width:150, sort: true}
                 ,{field: 'readerName', title: '借阅人', width:150}
                 ,{field: 'bookName', title: '书名', width: 200}
                 ,{field: 'lend_date', title: '借阅时间', width:200, sort: true}
@@ -149,7 +149,7 @@
         });
         function backBook(data1,obj,index){
             $.ajax({
-                url:'${APP_PATH}/backBook.do?reader_id='+data1.reader_id+'&book_id='+data1.book_id,
+                url:'${APP_PATH}/backBook.do?readerId='+data1.readerId+'&book_id='+data1.book_id,
                 dataType:'json',
                 type:'post',
                 success:function (data) {

@@ -19,13 +19,13 @@ function edit(data){//修改
 		  area: ['800px', '500px'], //宽高
 		  method: 'post',
 		  content: 'library/editReader.action?'
-			  +'reader_id='+data.reader_id
+			  +'readerId='+data.readerId
 			  +'&name='+data.name
 			  +'&sex='+data.sex
 			  +'&birthday='+data.birth//这里赋值给String类型的时间字段
 			  +'&address='+data.address
 			  +'&telephone='+data.telephone
-			  +'&card_state='+data.card_state
+			  +'&cardState='+data.cardState
 		  });
 }
 
@@ -37,13 +37,13 @@ function find(data){
 		  area: ['800px', '500px'], //宽高
 		  method: 'post',
 		  content: 'library/findReader.action?'
-			  +'reader_id='+data.reader_id
+			  +'readerId='+data.readerId
 			  +'&name='+data.name
 			  +'&sex='+data.sex
 			  +'&birthday='+data.birth//这里赋值给String类型的时间字段
 			  +'&address='+data.address
 			  +'&telephone='+data.telephone
-			  +'&card_state='+data.card_state
+			  +'&cardState='+data.cardState
 		  });
 }
 

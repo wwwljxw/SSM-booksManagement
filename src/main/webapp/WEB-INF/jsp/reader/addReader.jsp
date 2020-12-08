@@ -34,7 +34,7 @@
             <label class="layui-form-label">借阅号：</label>
             <div class="layui-input-inline">
                 <input type="hidden" name="id" value="${reader.id}">
-                <input type="text" name="reader_id"  value="${reader.reader_id}" lay-verify="required" autocomplete="off" class="layui-input">
+                <input type="text" name="readerId"  value="${reader.readerId}" lay-verify="required" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-inline">
@@ -73,7 +73,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">可借图书：</label>
             <div class="layui-input-inline">
-                <input type="text" name="card_state" lay-verify="required" value="${reader.card_state}" autocomplete="off" class="layui-input">
+                <input type="text" name="cardState" lay-verify="required" value="${reader.cardState}" autocomplete="off" class="layui-input">
             </div>
         </div>
     </div>
@@ -86,7 +86,7 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <c:if test="${code==null}"><!-- 查看是没有添加按钮的 -->
+            <c:if test="${reader==null}"><!-- 查看是没有添加按钮的 -->
             <button class="layui-btn" lay-submit="" lay-filter="addreader">立即添加</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </c:if>
@@ -120,7 +120,7 @@
                 layer.msg("请输入11位电话号码");
                 return false;
             }
-            if(!new RegExp("^[0-9]*$").test(data.field.card_state)){
+            if(!new RegExp("^[0-9]*$").test(data.field.cardState)){
                 layer.msg("可借图书必须为数字!");
                 return false;
             }
@@ -152,7 +152,7 @@
                     layer.msg("请输入11位电话号码");
                     return false;
                 }
-                if(!new RegExp("^[0-9]*$").test(data.field.card_state)){
+                if(!new RegExp("^[0-9]*$").test(data.field.cardState)){
                     layer.msg("可借图书必须为数字!");
                     return false;
                 }

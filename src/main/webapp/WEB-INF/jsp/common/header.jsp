@@ -33,8 +33,8 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">图书管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="<%=basePath%>library/index.do">图书列表</a></dd>
-                    <dd><a href="<%=basePath%>book/bookType">分类管理</a></dd>
+                    <dd><a href="<%=basePath%>style/index">图书列表</a></dd>
+                    <dd><a href="<%=basePath%>style/bookType">分类管理</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="<%=basePath%>reader/readerIndex.htm">读者列表</a></li>
@@ -42,7 +42,7 @@
             <li class="layui-nav-item"><a onclick="alterPwd('0');">修改密码</a></li>
         </c:if>
         <c:if test="${reader!=null}">
-            <li class="layui-nav-item"><a href="<%=basePath%>library/frontIndex.htm">图书列表</a></li>
+            <li class="layui-nav-item"><a href="<%=basePath%>system/frontIndex">图书列表</a></li>
             <li class="layui-nav-item"><a href="<%=basePath%>listDisBack.htm">借阅记录</a></li>
             <li class="layui-nav-item"><a onclick="alterPwd('1');">修改密码</a></li>
         </c:if>
@@ -61,6 +61,7 @@
 
 
 <div style="padding: 15px;">
+</div>
 </body>
 <script src="<%=basePath%>js/layui.js"></script>
 <script>

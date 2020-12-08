@@ -27,7 +27,7 @@
     </style>
 </head>
 <body>
-<form class="layui-form" action="<%=basePath%>library/submitAddBook" method="post" id="addbook" lay-filter="example">
+<form class="layui-form" action="<%=basePath%>book/submitAddBook" method="post" id="addbook" lay-filter="example">
     <div class="layui-form-item">
 
         <div class="layui-inline">

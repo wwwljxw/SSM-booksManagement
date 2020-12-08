@@ -1,4 +1,3 @@
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -6,7 +5,7 @@
     <link rel="stylesheet" href="${APP_PATH}/css/layui.css">
     <link rel="stylesheet" href="${APP_PATH}/css/style.css">
     <link rel="stylesheet" href="${APP_PATH}/css/modules/layer/default/layer.css">
-    <script src="${APP_PATH}/js/layui.js" ></script>
+    <script src="${APP_PATH}/js/layui.js"></script>
 </head>
 <body>
 <div class="login-main">
@@ -16,7 +15,8 @@
 
             <div class="layui-input-inline">
                 <div class="layui-inline" style="width: 85%">
-                    <input type="password" id="user" required  lay-verify="required" placeholder="原密码" autocomplete="off" class="layui-input">
+                    <input type="password" id="user" required lay-verify="required" placeholder="原密码" autocomplete="off"
+                           class="layui-input">
                 </div>
                 <div class="layui-inline">
                     <i class="layui-icon" id="ri" style="color: green;font-weight: bolder;" hidden></i>
@@ -29,7 +29,8 @@
             <div class="layui-input-inline">
                 <div class="layui-inline" style="width: 85%">
                     <input type="hidden" name="state" value="${state}">
-                    <input type="password" id="pwd" name="password" required  lay-verify="required" placeholder="新密码" autocomplete="off" class="layui-input">
+                    <input type="password" id="pwd" name="password" required lay-verify="required" placeholder="新密码"
+                           autocomplete="off" class="layui-input">
                 </div>
                 <!-- 对号 -->
                 <div class="layui-inline">
@@ -43,7 +44,8 @@
             <!-- 确认密码 -->
             <div class="layui-input-inline">
                 <div class="layui-inline" style="width: 85%">
-                    <input type="password" id="rpwd"  required  lay-verify="required" placeholder="重复新密码" autocomplete="off" class="layui-input">
+                    <input type="password" id="rpwd" required lay-verify="required" placeholder="重复新密码"
+                           autocomplete="off" class="layui-input">
                 </div>
                 <!-- 对号 -->
                 <div class="layui-inline">
@@ -61,7 +63,7 @@
     </div>
 
     <script>
-        lay('#version').html('-v'+ laydate.v);
+        lay('#version').html('-v' + laydate.v);
 
         //执行一个laydate实例
         laydate.render({
@@ -69,28 +71,28 @@
         });
     </script>
     <script type="text/javascript">
-        layui.use(['form','jquery','layer'], function () {
-            var form   = layui.form;
-            var $      = layui.jquery;
-            var layer  = layui.layer;
+        layui.use(['form', 'jquery', 'layer'], function () {
+            var form = layui.form;
+            var $ = layui.jquery;
+            var layer = layui.layer;
 
             //添加表单失焦事件
             //验证表单
-            $('#user').blur(function() {
+            $('#user').blur(function () {
                 var user = $(this).val();
                 $.ajax({
-                    url:'${APP_PATH}/checkPwd.do?',
-                    type:'post',
-                    dataType:'json',
-                    data:{password:user,state:${state}},
+                    url: '${APP_PATH}/checkPwd.do?',
+                    type: 'post',
+                    dataType: 'json',
+                    data: {password: user, state:${state}},
                     //验证用户名是否可用
-                    success:function(data){
+                    success: function (data) {
                         if (data.success) {
                             $('#ri').removeAttr('hidden');
-                            $('#wr').attr('hidden','hidden');
+                            $('#wr').attr('hidden', 'hidden');
                         } else {
                             $('#wr').removeAttr('hidden');
-                            $('#ri').attr('hidden','hidden');
+                            $('#ri').attr('hidden', 'hidden');
                             layer.msg(data.message, {icon: 5});
                             form.render();
                         }
@@ -102,32 +104,33 @@
 
 
             //验证两次密码是否一致
-            $('#rpwd').blur(function() {
-                if($('#pwd').val() != $('#rpwd').val()){
+            $('#rpwd').blur(function () {
+                if ($('#pwd').val() != $('#rpwd').val()) {
                     $('#rpwr').removeAttr('hidden');
-                    $('#rpri').attr('hidden','hidden');
+                    $('#rpri').attr('hidden', 'hidden');
                     layer.msg('两次输入密码不一致!');
-                }else {
+                } else {
                     $('#rpri').removeAttr('hidden');
-                    $('#rpwr').attr('hidden','hidden');
-                };
+                    $('#rpwr').attr('hidden', 'hidden');
+                }
+                ;
             });
 
             //
             //添加表单监听事件,提交注册信息
-            form.on('submit(sub)', function(data) {
+            form.on('submit(sub)', function (data) {
                 $.ajax({
-                    url:'${APP_PATH}/alterpwd.do',
-                    data:data.field,
-                    dataType:'json',
-                    type:'post',
-                    success:function(data){
+                    url: '${APP_PATH}/alterpwd.do',
+                    data: data.field,
+                    dataType: 'json',
+                    type: 'post',
+                    success: function (data) {
                         if (data.success) {
-                            layer.alert(data.message,function(){
+                            layer.alert(data.message, function () {
                                 window.parent.location.href = "${APP_PATH}/toLogin.htm";//刷新父页面
                                 parent.layer.close(index);//关闭弹出层
                             });
-                        }else {
+                        } else {
                             layer.msg(data.message);
                         }
                     }
@@ -138,6 +141,7 @@
 
         });
     </script>
+</div>
 </body>
 </html>
 

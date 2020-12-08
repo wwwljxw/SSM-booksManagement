@@ -1,7 +1,8 @@
 
-import com.baomidou.mybatisplus.core.mapper.Mapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.forever.dao.BookMapper;
+import com.forever.dao.ReaderMapper;
 import com.forever.dao.TypeMapper;
 import com.forever.domain.Book;
 import com.forever.domain.Type;
@@ -15,7 +16,7 @@ public class MyTest {
     ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
     TypeMapper typeMapper = context.getBean("typeMapper", TypeMapper.class);
     BookMapper bookMapper = context.getBean("bookMapper", BookMapper.class);
-
+    ReaderMapper readerMapper = context.getBean("readerMapper", ReaderMapper.class);
     @Test
     public void test1(){
         Type type = new Type();
@@ -27,15 +28,9 @@ public class MyTest {
 
     @Test
     public void test2(){
-        //        分页
-        Page<Book> pageSize = new Page(1,6);
-        Page<Book> typePage = bookMapper.selectPage(pageSize, null);
-
-//        封装sql分页后的执行结果
-        Map<String, Object> books = new HashMap<>();
-        books.put("code", 0);
-        books.put("msg", "");
-        books.put("count", typePage.getTotal());
-        books.put("data", typePage.getRecords());
+        QueryWrapper wrapper = new QueryWrapper();
+        wrapper.eq("reader_id",10086);
+        Integer integer = readerMapper.selectCount(wrapper);
+        System.out.println(integer);
     }
 }
