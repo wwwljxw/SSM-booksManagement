@@ -20,7 +20,7 @@ function edit(data){//修改
 		  area: ['800px', '600px'], //宽高
 		  method: 'post',
 		  content: 'library/editBook.action?'
-			  +'book_id='+data.book_id
+			  +'id='+data.id
 			  +'&name='+data.name
 			  +'&author='+data.author
 			  +'&publish='+data.publish

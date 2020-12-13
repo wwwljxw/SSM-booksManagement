@@ -1,11 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: WDD
-  Date: 2019/6/16
-  Time: 9:17
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <html>
 <head>
     <title>读者未还图书</title>
@@ -59,10 +58,10 @@
         var element = layui.element;
 
     });
-    var url = "${APP_PATH}/"
+    var url = "<%=basePath%>"
 </script>
 
-<script src="${APP_PATH}/js/layui.js"></script>
+<script src="<%=basePath%>js/layui.js"></script>
 <script>
 
 
@@ -89,7 +88,7 @@
         table.render({
             elem: '#demo'
             ,height: 550
-            ,url: '${APP_PATH}/listDisBackBook.do?power=1' //数据接口
+            ,url: '<%=basePath%>listDisBackBook.do?power=1' //数据接口
             ,title: '图书表'
             ,page: true
             ,limit: 6
@@ -149,7 +148,7 @@
         });
         function backBook(data1,obj,index){
             $.ajax({
-                url:'${APP_PATH}/backBook.do?readerId='+data1.readerId+'&book_id='+data1.book_id,
+                url:'<%=basePath%>backBook.do?readerId='+data1.readerId+'&id='+data1.id,
                 dataType:'json',
                 type:'post',
                 success:function (data) {

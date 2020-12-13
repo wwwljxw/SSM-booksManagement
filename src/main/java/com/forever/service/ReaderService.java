@@ -15,4 +15,5 @@ public interface ReaderService {
     AjaxResult checkReader(Integer reader_id);
     Reader selectById(Integer id);
     AjaxResult deleteById(Integer id) throws ReaderException;
+    Reader doLogin(String name,String password);
 }

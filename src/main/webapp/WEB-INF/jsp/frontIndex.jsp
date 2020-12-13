@@ -1,14 +1,13 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: WDD
-  Date: 2019/6/16
-  Time: 12:49
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -40,7 +39,7 @@
             <div class="layui-input-block">
                 <select name="cid" id="cid">
                     <option value="">请选择书本类别</option>
-                    <c:forEach items="${category}" var="ctg">
+                    <c:forEach items="${type}" var="ctg">
                         <option value="${ctg.cid}">${ctg.cname}</option>
                     </c:forEach>
                 </select>
@@ -71,7 +70,7 @@
     });
 </script>
 
-<script src="${APP_PATH}/js/layui.js"></script>
+<script src="<%=basePath%>js/layui.js"></script>
 <script>
 
 
@@ -95,14 +94,14 @@
         table.render({
             elem: '#demo'
             , height: 550
-            , url: '${APP_PATH}/library/listBook.do' //数据接口
+            , url: '<%=basePath%>book/pageAllBook' //数据接口
             , title: '图书表'
             , page: true
             , limit: 5
             , limits: [5, 10, 15, 20]
             , cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
-                , {field: 'book_id', title: '书本编号', width: 150, sort: true}
+                , {field: 'id', title: '书本编号', width: 150, sort: true}
                 , {field: 'name', title: '书名', width: 200}
                 , {field: 'author', title: '作者', width: 200, sort: true}
                 , {field: 'publish', title: '出版社', width: 200, sort: true}
@@ -157,8 +156,8 @@
 //后边两个参数仅仅是因为要执行动态删除dom
         function lend(obj, index, data1) {
             $.ajax({
-                url: '${APP_PATH}/library/lendBook.do?'
-                + 'book_id=' + data1.book_id,
+                url: '<%=basePath%>library/lendBook.do?'
+                + 'id=' + data1.id,
                 dataType: 'json',
                 type: 'post',
                 success: function (data) {

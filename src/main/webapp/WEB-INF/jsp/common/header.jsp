@@ -33,17 +33,17 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">图书管理</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="<%=basePath%>style/index">图书列表</a></dd>
-                    <dd><a href="<%=basePath%>style/bookType">分类管理</a></dd>
+                    <dd><a href="<%=basePath%>system/index">图书列表</a></dd>
+                    <dd><a href="<%=basePath%>system/bookType">分类管理</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="<%=basePath%>reader/readerIndex.htm">读者列表</a></li>
-            <li class="layui-nav-item"><a href="<%=basePath%>listDisBackAdmin.htm">借阅管理</a></li>
+            <li class="layui-nav-item"><a href="<%=basePath%>system/readerIndex.htm">读者列表</a></li>
+            <li class="layui-nav-item"><a href="<%=basePath%>system/listDisBackAdmin">借阅管理</a></li>
             <li class="layui-nav-item"><a onclick="alterPwd('0');">修改密码</a></li>
         </c:if>
         <c:if test="${reader!=null}">
             <li class="layui-nav-item"><a href="<%=basePath%>system/frontIndex">图书列表</a></li>
-            <li class="layui-nav-item"><a href="<%=basePath%>listDisBack.htm">借阅记录</a></li>
+            <li class="layui-nav-item"><a href="<%=basePath%>system/listDisBack">借阅记录</a></li>
             <li class="layui-nav-item"><a onclick="alterPwd('1');">修改密码</a></li>
         </c:if>
     </ul>
@@ -55,7 +55,7 @@
                 ${admin.name}
             </a>
         </li>
-        <li class="layui-nav-item"><a href="<%=basePath%>loginout.htm">退出</a></li>
+        <li class="layui-nav-item"><a href="<%=basePath%>system/loginout">退出</a></li>
     </ul>
 </div>
 
@@ -72,7 +72,7 @@
             title: '修改密码',
             skin: 'layui-layer-demo', //加上边框
             area: ['500px', '300px'], //宽高
-            content: '<%=basePath%>toAlterpwdPage.do?state='+state
+            content: '<%=basePath%>system/toAlterPwd?state='+state
         });
     }
 

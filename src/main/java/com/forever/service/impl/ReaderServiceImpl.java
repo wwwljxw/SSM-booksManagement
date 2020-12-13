@@ -101,4 +101,15 @@ public class ReaderServiceImpl implements ReaderService {
         }
         return ajaxResult;
     }
+
+    @Override
+    public Reader doLogin(String name, String password) {
+        QueryWrapper<Reader> wrapper = new QueryWrapper<>();
+        Map<String, String> map = new HashMap<>();
+        map.put("reader_id",name);
+        map.put("password",password);
+        wrapper.allEq(map);
+
+        return readerMapper.selectOne(wrapper);
+    }
 }
