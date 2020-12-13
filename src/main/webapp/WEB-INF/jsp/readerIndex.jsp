@@ -58,7 +58,7 @@
 </script>
 
 <script src="<%=basePath%>js/layui.js"></script>
-<%--<script src="${APP_PATH}/js/reader/CRUDreader.js"></script>--%>
+<%--<script src="<%=basePath%>js/reader/CRUDreader.js"></script>--%>
 <script>
 
 

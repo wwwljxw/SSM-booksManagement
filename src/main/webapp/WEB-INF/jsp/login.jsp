@@ -56,15 +56,15 @@
 
         form.on('submit(login)',function (data) {
             $.ajax({
-                url:'<%=basePath%>doLogin.do',
+                url:'<%=basePath%>system/doLogin',
                 data:data.field,
                 dataType:'json',
                 type:'post',
                 success:function (data) {
                     if (data.status == '0'){
-                        location.href = "${APP_PATH}/library/index.do";
+                        location.href = "<%=basePath%>system/index";
                     }else if (data.status == '1') {
-                        location.href = "${APP_PATH}/library/frontIndex.htm";
+                        location.href = "<%=basePath%>system/frontIndex";
                     }else if (data.status == '2'){
                         layer.msg(data.message);
                     }else{

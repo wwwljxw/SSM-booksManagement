@@ -1,18 +1,10 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: WDD
-  Date: 2019/6/16
-  Time: 16:41
-  To change this template use File | Settings | File Templates.
---%>
-<%--
-  Created by IntelliJ IDEA.
-  User: hasee
-  Date: 2019/6/1
-  Time: 15:48
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <html>
 <head>
     <title>读者未还图书</title>
@@ -63,10 +55,10 @@
         var element = layui.element;
 
     });
-    var url = "${APP_PATH}/"
+    var url = "<%=basePath%>"
 </script>
 
-<script src="${APP_PATH}/js/layui.js"></script>
+<script src="<%=basePath%>js/layui.js"></script>
 <script>
 
 
@@ -93,7 +85,7 @@
         table.render({
             elem: '#demo'
             ,height: 550
-            ,url: '${APP_PATH}/listDisBackBook.do' //数据接口
+            ,url: '<%=basePath%>listDisBackBook.do' //数据接口
             ,title: '图书表'
             ,page: true
             ,limit: 6
@@ -101,7 +93,7 @@
             ,cols: [[ //表头
                 {type: 'checkbox', fixed: 'left'}
                 ,{field: 'readerId', title: '借阅号', width:200, sort: true}
-                ,{field: 'book_id', title: '图书ID', width: 200}
+                ,{field: 'id', title: '图书ID', width: 200}
                 ,{field: 'bookName', title: '书名', width: 300}
                 ,{field: 'lend_date', title: '借阅时间', width:200, sort: true}
                 ,{field: 'back_date', title: '最晚归还时间', width: 200}
